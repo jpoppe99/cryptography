@@ -34,24 +34,30 @@ def factor2(n):#factors powers of two out, returns highest power of 2 factor
 		r += 1
 	return r
 
+def factorialMod(a,n): #factorial mod n
+	return (a*math.factorial(a-1))%n
+
 def L(n):
 	return math.e**(math.sqrt(math.log(n)*math.log(math.log(n))))
 
 def pollard(n,a = 2):
 	g = 1
-	i = 0
+	i = 1
 	while g == 1:
-		val = a**math.factorial(i)
+		#val = a**math.factorial(i)
+		val = a**factorialMod(i,n) #more efficient calculation
 		g = math.gcd(val-1,n)
 		i += 1
+		#print(i) #debug
 	if g == n:
 		return 0
 	else:
 		return g, int(n/g)
+
 def  main():
 	#userinput = int(input("giv number to factor: "))
 	#print(pollard(userinput))
-	print(str(millerRabinTest(377)))
+	#print(str(millerRabinTest(377)))
 	return 0
 
 
