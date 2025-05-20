@@ -1,8 +1,25 @@
 import math
 import random
 
+
+
+def isPrime(n):
+	"""
+	Function takes a number n and returns True if prime or False if not.
+	"""
+	if n == 0 or n == 1:
+		return False
+	sroot = math.floor(n ** .5)
+	result = True
+	for i in range(2,sroot+1):	#python ranges mean you have to add 1 to include sroot
+		if n % i == 0:
+			result = False	#result is true iff n % i == 0 for all iterations
+	return result
+
+
 def legendre(a,p):
 	return (a**((p-1)/2))%p
+
 
 def millerRabinTest(n,k = 2): #return true if n is probably prime, false if witness found (n is composite)
 	s = 0
